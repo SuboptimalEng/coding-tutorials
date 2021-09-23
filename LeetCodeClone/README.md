@@ -1,6 +1,6 @@
 # LeetCodeClone
 
-🤖 Full stack LeetCode clone built with Next.js, Tailwind CSS and Node.
+Full stack LeetCode clone built with React.js, Tailwind CSS and Node.
 
 ### Setup
 
