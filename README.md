@@ -1,2 +1,2 @@
 # CodingTutorials
-👨🏾‍🏫 The repo for my coding tutorial series on YouTube.
+📦 The repo for my coding tutorial series on YouTube.
