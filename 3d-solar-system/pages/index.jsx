@@ -7,26 +7,31 @@ import Rotation from "./lib/Rotation";
 export default function Home() {
   let gui;
 
-  const init = async () => {
+  const initHelperGui = async () => {
     const dat = await import("dat.gui");
     gui = new dat.GUI();
   };
 
   useEffect(async () => {
-    await init();
+    await initHelperGui();
 
     // TODO: Understand this code later.
     let test = new SceneInit();
+    // NOTE: Link with canvas.
     test.initScene();
     test.animate();
 
     let solarSystem = new THREE.Group();
-    const sunGeometry = new THREE.SphereGeometry(8);
-    const sunTexture = new THREE.TextureLoader().load("sun.jpeg");
-    const sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
+    const sunGeometry = new THREE.BoxGeometry(8, 8, 8);
+    const sunMaterial = new THREE.MeshNormalMaterial({
+      color: 0xffff00,
+    });
     const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
     solarSystem.add(sunMesh);
     test.scene.add(solarSystem);
+
+    // const sunTexture = new THREE.TextureLoader().load("sun.jpeg");
+    // const sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
 
     let mercurySystem = new THREE.Group();
     const mercury = new Planet(2, 16, "mercury.png");
@@ -38,7 +43,7 @@ export default function Home() {
     mercurySystem.add(mercuryRotationMesh);
 
     let venusSystem = new THREE.Group();
-    const venus = new Planet(3.8, 32, "venus.jpeg");
+    const venus = new Planet(3, 32, "venus.jpeg");
     const venusMesh = venus.getMesh();
     venusSystem.add(venusMesh);
 
@@ -51,7 +56,7 @@ export default function Home() {
     const earthMesh = earth.getMesh();
     earthSystem.add(earthMesh);
 
-    const earthRotation = new Rotation(earthMesh, true);
+    const earthRotation = new Rotation(earthMesh);
     const earthRotationMesh = earthRotation.getMesh();
     earthSystem.add(earthRotationMesh);
 
@@ -83,7 +88,7 @@ export default function Home() {
       marsSystem.rotation.y += EARTH_YEAR * 0.5;
       requestAnimationFrame(animate);
     };
-    animate();
+    // animate();
   }, []);
 
   return (
