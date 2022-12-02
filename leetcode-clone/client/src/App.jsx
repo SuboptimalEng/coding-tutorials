@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import axios from 'axios';
-import 'codemirror/keymap/sublime';
-import 'codemirror/theme/dracula.css';
+import {sublime} from '@uiw/codemirror-theme-sublime'
+import {python} from '@codemirror/lang-python'
 import CodeMirror from '@uiw/react-codemirror';
 
 function App() {
@@ -32,18 +32,13 @@ function App() {
               );
             })}
           </div>
-          <CodeMirror
-            value={code}
-            options={{
-              theme: 'dracula',
-              keyMap: 'sublime',
-              mode: 'python',
-            }}
-            onChange={(editor, data, value) => {
-              setCode(editor.getValue());
-            }}
-            className="w-96 h-80"
-          />
+            <CodeMirror          
+               value={code}          
+               theme={sublime}
+               extensions={[python()]}
+               onChange={(value)=>{setcode(value)}
+               className="w-96 h-80"
+               />
           <div
             onClick={() => checkCode()}
             className="border-2 p-2 bg-green-600"
