@@ -1,3 +1,3 @@
 # 📦 Coding Tutorials
 
-The repo for my React + Vue coding tutorial series on YouTube.
+The repo for my React + Vue coding tutorials on YouTube.
